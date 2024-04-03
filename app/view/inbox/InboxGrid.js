@@ -43,11 +43,30 @@ Ext.define('MailMe.view.inbox.InboxGrid', {
                     Ext.Msg.alert('Warning', 'Please select at least one email to delete.');
                 }
             }
+        }, {
+            text: 'Show Details',
+            bind:{
+                disabled: '{!inboxgrid.selection}'
+            },
+            handler: function() {
+                var grid = this.up('grid');
+                var selectedRecords = grid.getSelection();
+
+                if (selectedRecords.length === 1) {
+                    var selectedEmail = selectedRecords[0];
+                    var emailDetailsForm = Ext.create('MailMe.view.inbox.EmailDetailsForm', {
+                        emailData: selectedEmail.data
+                    });
+                    emailDetailsForm.show();
+                } else {
+                    Ext.Msg.alert('Warning', 'Please select exactly one email to view details.');
+                }
+            }
         }]
     }],
     bbar: {
         xtype: 'pagingtoolbar',
         displayInfo: true
     },
-    scrollable:true,
+    scrollable: true
 });

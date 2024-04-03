@@ -37,6 +37,26 @@ Ext.define('MailMe.view.sent.SentMailGrid', {
                     Ext.Msg.alert('Warning', 'Please select at least one email to delete.');
                 }
             }
+        },
+        {
+            text: 'Show Details',
+            bind:{
+                disabled: '{!outboxgrid.selection}'
+            },
+            handler: function() {
+                var grid = this.up('grid');
+                var selectedRecords = grid.getSelection();
+
+                if (selectedRecords.length === 1) {
+                    var selectedEmail = selectedRecords[0];
+                    var emailDetailsForm = Ext.create('MailMe.view.inbox.EmailDetailsForm', {
+                        emailData: selectedEmail.data
+                    });
+                    emailDetailsForm.show();
+                } else {
+                    Ext.Msg.alert('Warning', 'Please select exactly one email to view details.');
+                }
+            }
         }]
     }],
     bbar: {
