@@ -50,6 +50,7 @@ Ext.define('MailMe.view.inbox.InboxGrid', {
         items: [
             {
                 text: 'Compose',
+                iconCls: 'fas fa-pencil-alt',
                 handler: function() {
                     var composeEmailForm = Ext.create('MailMe.view.inbox.ComposeEmailForm');
                     composeEmailForm.show();
@@ -67,6 +68,7 @@ Ext.define('MailMe.view.inbox.InboxGrid', {
         '->',
          {
             text: 'Delete',
+            iconCls: 'far fa-trash-alt',
             bind:{
                 disabled: '{!inboxgrid.selection}'
             },

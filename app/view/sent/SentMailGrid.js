@@ -55,6 +55,7 @@ Ext.define('MailMe.view.sent.SentMailGrid', {
             '->',
             {
             text: 'Delete',
+            iconCls: 'far fa-trash-alt',
             bind:{
                 disabled: '{!outboxgrid.selection}'
             },
