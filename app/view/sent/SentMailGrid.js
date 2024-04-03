@@ -2,7 +2,7 @@ Ext.define('MailMe.view.sent.SentMailGrid', {
     extend: 'Ext.grid.Panel',
     xtype: 'sentmail',
     reference: 'outboxgrid',
-    controller: 'inbox',
+    controller: 'sentmail',
     title: 'Sent Mail',
   
     store: {
@@ -75,7 +75,7 @@ Ext.define('MailMe.view.sent.SentMailGrid', {
             text: 'Show Details',
             bind:{
                 disabled: '{!outboxgrid.selection}'
-            },
+            }, 
             handler: function() {
                 var grid = this.up('grid');
                 var selectedRecords = grid.getSelection();
