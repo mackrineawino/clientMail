@@ -88,10 +88,10 @@ Ext.define('MailMe.view.main.Main', {
         }]
         
     }, {
-        title: 'Settings',
-        iconCls: 'fa-cog',
-        bind: {
-            html: '{loremIpsum}'
-        }
+        title: 'Starred',
+        iconCls: 'fa-fas fa-star',
+        items: [{
+            xtype: 'starredemailgrid'
+        }]
     }]
 });

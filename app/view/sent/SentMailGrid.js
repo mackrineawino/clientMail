@@ -2,12 +2,33 @@ Ext.define('MailMe.view.sent.SentMailGrid', {
     extend: 'Ext.grid.Panel',
     xtype: 'sentmail',
     reference: 'outboxgrid',
+    controller: 'inbox',
     title: 'Sent Mail',
   
     store: {
         type: 'outbox'
     },
     columns: [
+        {
+            xtype: 'actioncolumn',
+            width: 30,
+            align: 'center',
+            style:{
+                fontSize: '10px'
+            },
+            items: [{
+                getClass: function(v, metadata, record) {
+                    return record.get('starred') ? 'fas fa-star' : 'far fa-star';
+                },
+                tooltip: 'Toggle Star',
+                defaultRendererIconCls: 'far fa-star', 
+                handler: function(grid, rowIndex, colIndex) {
+                    var record = grid.getStore().getAt(rowIndex);
+                    record.set('starred', !record.get('starred'));
+                  
+                }
+            }]
+        },
         { text: 'Subject', dataIndex: 'subject', flex: 1 },
         { text: 'Recipient', dataIndex: 'sender', width: 150 },
         { text: 'Date', dataIndex: 'date', width: 120 }
@@ -21,7 +42,18 @@ Ext.define('MailMe.view.sent.SentMailGrid', {
     dockedItems: [{
         xtype: 'toolbar',
         dock: 'top',
-        items: [ {
+        items: [ 
+            {
+                xtype: 'textfield',
+                emptyText: 'Search...',
+                width: 250,
+                enableKeyEvents: true,
+                listeners: {
+                    keyup: 'onSearch'
+                }
+            }, 
+            '->',
+            {
             text: 'Delete',
             bind:{
                 disabled: '{!outboxgrid.selection}'
