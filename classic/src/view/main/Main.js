@@ -76,13 +76,13 @@ Ext.define('MailMe.view.main.Main', {
 
     items: [{
         title: 'Inbox',
-        iconCls: 'fa-home',
+        iconCls: 'fa-inbox',
         items: [{
             xtype: 'inbox'
         }]
     }, {
         title: 'Sent Mail',
-        iconCls: 'fa-users',
+        iconCls: 'fa-paper-plane',
         items: [{
             xtype: 'sentmail'
         }]

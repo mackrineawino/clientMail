@@ -55,7 +55,8 @@ Ext.define('MailMe.view.inbox.InboxGrid', {
                 if (selectedRecords.length === 1) {
                     var selectedEmail = selectedRecords[0];
                     var emailDetailsForm = Ext.create('MailMe.view.inbox.EmailDetailsForm', {
-                        emailData: selectedEmail.data
+                        emailData: selectedEmail.data,
+                        context: 'recieved' 
                     });
                     emailDetailsForm.show();
                 } else {

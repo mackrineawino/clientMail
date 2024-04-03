@@ -10,6 +10,9 @@ Ext.define('MailMe.view.inbox.EmailDetailsForm', {
     initComponent: function() {
         var me = this;
 
+        // Determine the label for the "Sender" field based on the context
+        var senderLabel = (me.context === 'sent') ? 'Recipient' : 'Sender';
+
         me.items = [{
             xtype: 'form',
             layout: 'anchor',
@@ -24,7 +27,7 @@ Ext.define('MailMe.view.inbox.EmailDetailsForm', {
                 name: 'subject',
                 value: me.emailData.subject
             }, {
-                fieldLabel: 'Sender',
+                fieldLabel: senderLabel, // Use the determined label
                 name: 'sender',
                 value: me.emailData.sender
             }, {
